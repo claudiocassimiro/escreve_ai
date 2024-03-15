@@ -1,6 +1,6 @@
 from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
-from app.constumer_support_crew import ConstumerSupportCrew
+from constumer_support_crew import ConstumerSupportCrew
 
 app = Flask(__name__)
 

@@ -1,7 +1,7 @@
 from crewai import Crew, Process
 from textwrap import dedent
-from app.attendant_agents import AttendantAgents
-from app.attendant_tasks import AttendantTasks
+from attendant_agents import AttendantAgents
+from attendant_tasks import AttendantTasks
 
 class ConstumerSupportCrew:
     def __init__(self, message):
