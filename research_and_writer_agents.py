@@ -28,26 +28,31 @@ Notas:
 - A história pregressa deve ser o currículo.
 """
 
-class AttendantAgents:
+class ResearchAndWriterAgents:
     def __init__(self):
         self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
         self.OpenAIGPT4 = ChatOpenAI(model_name="gpt-4", temperature=0.7)
-
-    def customer_service_on_whatsApp(self):
+    
+    def research(self):
         return Agent(
-            role="Atendente de Clientes no WhatsApp",
-            backstory=dedent("""
-                Profissional com experiência em atendimento ao cliente, especialmente em ambientes virtuais como o WhatsApp.
-                Habilidade em comunicação eficaz e resolução de problemas para garantir a satisfação do cliente.
-                Conhecimento das políticas da empresa e dos produtos/serviços oferecidos para fornecer informações precisas.
-            """),
-            goal=dedent("""
-                Fornecer suporte e assistência aos clientes via WhatsApp, garantindo uma experiência positiva e satisfatória.
-                Responder rapidamente às consultas dos clientes, resolver problemas. Manter registros precisos das interações com os clientes e colaborar com a equipe para melhorar continuamente o serviço.
-            """),
-            allow_delegation=True,
+            role='Senior Research Analyst',
+            goal='Uncover cutting-edge developments in AI and data science',
+            backstory="""You work at a leading tech think tank.
+            Your expertise lies in identifying emerging trends.
+            You have a knack for dissecting complex data and presenting actionable insights.""",
             verbose=True,
+            allow_delegation=False,
             llm=self.OpenAIGPT35,
-            memory=True,
+        )
+    
+    def writer(self):
+        return Agent(
+            role='Tech Content Strategist',
+            goal='Craft compelling content on tech advancements',
+            backstory="""You are a renowned Content Strategist, known for your insightful and engaging articles.
+            You transform complex concepts into compelling narratives.""",
+            verbose=True,
+            allow_delegation=True,
+            lm=self.OpenAIGPT35,
         )
     

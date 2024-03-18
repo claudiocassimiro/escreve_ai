@@ -41,22 +41,33 @@ Modelo:
         '''), agente=agente)
 """
 
-class AttendantTasks:
-    def __init__(self, message):
-        self.message = message
+user_writing_format = "N/A"
+
+class ResearchAndWriterTasks:
+    def __init__(self, theme_to_search):
+        self.theme_to_search = theme_to_search
 
     def __tip_section(self):
-        return "Lembre-se de manter uma comunicação clara e amigável com os clientes e você vai ganhar uma comissão de US$ 10.000."
+        return "Lembre-se de fazer o seu MELHOR TRABALHO e você vai ganhar uma comissão de US$ 10.000."
 
-    def whatsapp_attendant(self, agent):
+    def research_theme(self, agent):
         return Task(description=dedent(f'''
-                **Tarefa**: Atender Clientes no WhatsApp
-                **Descrição**: Fornecer suporte e assistência aos clientes por meio do WhatsApp, respondendo a perguntas, resolvendo problemas e oferecendo informações sobre nossos produtos ou serviços.
-
-                **Mensagem do cliente**: {self.message}
+                **Tarefa**: Faça uma análise abrangente de {self.theme_to_search}.
+                **Descrição**: Identifique as principais tendências, tecnologias inovadoras e possíveis impactos no setor.
 
                 **Nota**: {self.__tip_section}
             '''),
             agent=agent,
-            expected_output="Suporte e assistência aos clientes",
+            expected_output="Relatório de análise completo em bullet points",
+      )
+    
+    def write_post(self, agent):
+        return Task(description=dedent(f'''
+                **Tarefa**: Usando os insights fornecidos e o formato de escrita do usuário: {user_writing_format} desenvolver uma postagem de blog envolvente que destaque o {self.theme_to_search}.
+                **Descrição**: Sua postagem deve ser informativa, mas acessível, atendendo a um público que pode ou não entender de tecnologia. Faça com que pareça legal, evite palavras complexas para que não pareça que o post foi escrito por uma IA.
+
+                **Nota**: {self.__tip_section}
+            '''),
+            agent=agent,
+            expected_output="Postagem completa de blog com pelo menos 4 parágrafos",
       )
