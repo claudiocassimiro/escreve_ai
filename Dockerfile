@@ -5,10 +5,10 @@ FROM python:3.10-slim-bullseye
 WORKDIR /app
 
 # Copia o arquivo requirements.txt para o contêiner
-COPY requirements.txt .
+COPY requirements.txt ./
 
 # Instala as dependências listadas no requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 # Copia o restante do código fonte para o contêiner
 COPY . .
@@ -16,9 +16,5 @@ COPY . .
 # Expõe a porta em que a aplicação Flask irá rodar
 EXPOSE 5000
 
-
-# Define a variável de ambiente PYTHONPATH para garantir que o Python possa encontrar o módulo
-ENV FLASK_APP=./app.py
-
 # Comando para iniciar o servidor Flask
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["flask", "run", "--host=0.0.0.0", "--port=4000"]
