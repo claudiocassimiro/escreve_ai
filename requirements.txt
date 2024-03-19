@@ -36,6 +36,8 @@ exceptiongroup==1.2.0
 fastapi==0.110.0
 filelock==3.13.1
 Flask==3.0.2
+Flask-JWT-Extended==4.6.0
+Flask-SQLAlchemy==3.1.1
 flatbuffers==24.3.7
 frozenlist==1.4.1
 fsspec==2024.2.0
@@ -114,6 +116,7 @@ pluggy==1.4.0
 posthog==3.5.0
 proto-plus==1.23.0
 protobuf==4.25.3
+psycopg2-binary==2.9.9
 pulsar-client==3.4.0
 py==1.11.0
 pyarrow==15.0.1
