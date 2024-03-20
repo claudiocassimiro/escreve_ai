@@ -42,7 +42,7 @@ def login_user():
       }
     }), 200
   
-  return jsonify({"error": "Invalid password or password"}), 400
+  return jsonify({"error": "Invalid username or password"}), 400
   
 
 
