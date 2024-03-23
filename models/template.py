@@ -17,6 +17,13 @@ class Template(db.Model):
     def list_all(self): 
         return self.query.all()
     
+    @classmethod
+    def get_template_by_user_id(cls, user_id):
+        templates = cls.query.filter_by(user_id=user_id).all()
+        templates_json = [template.json() for template in templates] 
+
+        return templates_json
+
     def save(self):
         db.session.add(self)
         db.session.commit()
