@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_jwt_extended import create_access_token, create_refresh_token
 from models import User
+from datetime import timedelta
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -31,8 +32,9 @@ def login_user():
   user = User.get_user_by_username(username = data.get('username'))
 
   if user and (user.check_password(password = data.get('password'))):
+    expires_in_one_week = timedelta(days=7)
     access_token = create_access_token(identity=user.username)
-    refresh_token = create_refresh_token(identity=user.username)
+    refresh_token = create_refresh_token(identity=user.username, expires_delta=expires_in_one_week)
     
     return jsonify({
       "message": "Logged In", 
