@@ -14,7 +14,7 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Expõe a porta em que a aplicação Flask irá rodar
-EXPOSE 5000
+EXPOSE 4000
 
 # Comando para iniciar o servidor Flask
 CMD ["flask", "run", "--host=0.0.0.0", "--port=4000"]
