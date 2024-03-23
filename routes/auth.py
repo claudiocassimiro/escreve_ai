@@ -4,7 +4,7 @@ from models import User
 
 auth_bp = Blueprint('auth', __name__)
 
-@auth_bp.route('/api/register', methods=['POST'])
+@auth_bp.route('/api/user/register', methods=['POST'])
 def register_user():
   data = request.get_json()
 
@@ -24,7 +24,7 @@ def register_user():
   
   return jsonify({"message": "User created"}), 201
 
-@auth_bp.post('/api/login')
+@auth_bp.post('/api/user/login')
 def login_user():
   data = request.get_json()
 
