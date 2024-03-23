@@ -41,10 +41,9 @@ Modelo:
         '''), agente=agente)
 """
 
-user_writing_format = "N/A"
-
 class ResearchAndWriterTasks:
-    def __init__(self, theme_to_search):
+    def __init__(self, user_writing_format, theme_to_search):
+        self.user_writing_format = user_writing_format
         self.theme_to_search = theme_to_search
 
     def __tip_section(self):
@@ -63,7 +62,7 @@ class ResearchAndWriterTasks:
     
     def write_post(self, agent):
         return Task(description=dedent(f'''
-                **Tarefa**: Usando os insights fornecidos e o formato de escrita do usuário: {user_writing_format} desenvolver uma postagem de blog envolvente que destaque o {self.theme_to_search}.
+                **Tarefa**: Usando os insights fornecidos e o formato de escrita do usuário Com base nas seguintes amostras: {self.user_writing_format}, extraia pontos que identificam o estilo de escrita do usuario e desenvolva uma postagem de blog envolvente que destaque o {self.theme_to_search}.
                 **Descrição**: Sua postagem deve ser informativa, mas acessível, atendendo a um público que pode ou não entender de tecnologia. Faça com que pareça legal, evite palavras complexas para que não pareça que o post foi escrito por uma IA.
 
                 **Nota**: {self.__tip_section}
