@@ -18,6 +18,13 @@ class Post(db.Model):
     def list_all(self): 
         return self.query.all()
     
+    @classmethod
+    def get_posts_by_user_id(cls, user_id):
+        posts = cls.query.filter_by(user_id=user_id).all()
+        posts_json = [post.json() for post in posts] 
+
+        return posts_json
+
     def save(self):
         db.session.add(self)
         db.session.commit()
