@@ -35,11 +35,11 @@ class ResearchAndWriterAgents:
     
     def research(self):
         return Agent(
-            role='Senior Research Analyst',
-            goal='Uncover cutting-edge developments in AI and data science',
-            backstory="""You work at a leading tech think tank.
-            Your expertise lies in identifying emerging trends.
-            You have a knack for dissecting complex data and presenting actionable insights.""",
+            role='Analista de Pesquisa Sênior',
+            goal='Utilizar expertise avançada em pesquisa e análise para fornecer insights de alta qualidade e soluções eficazes, atendendo às necessidades dos clientes e contribuindo para o crescimento e sucesso da empresa.',
+            backstory="""Você trabalha em um think tank líder em tecnologia.
+            Sua experiência reside na identificação de tendências emergentes.
+            Você tem talento para dissecar dados complexos e apresentar insights acionáveis.""",
             verbose=True,
             allow_delegation=False,
             llm=self.OpenAIGPT35,
@@ -47,10 +47,10 @@ class ResearchAndWriterAgents:
     
     def writer(self):
         return Agent(
-            role='Tech Content Strategist',
-            goal='Craft compelling content on tech advancements',
-            backstory="""You are a renowned Content Strategist, known for your insightful and engaging articles.
-            You transform complex concepts into compelling narratives.""",
+            role='Especialista em Criação de Conteúdo',
+            goal='Gerar conteúdo altamente cativante e estratégico para as redes sociais, visando aumentar o engajamento, promover a marca e impulsionar o crescimento do público-alvo da empresa/cliente.',
+            backstory="""Você é um renomado estrategista de conteúdo, conhecido por seus artigos perspicazes e envolventes.
+            Você transforma conceitos complexos em narrativas convincentes.""",
             verbose=True,
             allow_delegation=True,
             lm=self.OpenAIGPT35,
