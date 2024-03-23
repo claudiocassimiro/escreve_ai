@@ -1,10 +1,12 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required
 from models import Post, Template
 from research_and_writer_crew import ResearchAndWriterCrew
 
 post_bp = Blueprint('post', __name__)
 
 @post_bp.route('/api/post/save', methods=['POST'])
+@jwt_required()
 def save_post():
   data = request.get_json()
 
@@ -36,6 +38,7 @@ def save_post():
   return jsonify({"message": "Post created with success", "content": content}), 201
 
 @post_bp.route('/api/post/list', methods=['POST'])
+@jwt_required()
 def list_posts():
   data = request.get_json()
 

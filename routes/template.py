@@ -1,9 +1,11 @@
 from flask import Blueprint, jsonify, request
+from flask_jwt_extended import jwt_required
 from models import Template
 
 template_bp = Blueprint('template', __name__)
 
 @template_bp.route('/api/template/save', methods=['POST'])
+@jwt_required()
 def save_tamplate():
   data = request.get_json()
 
@@ -22,6 +24,7 @@ def save_tamplate():
   return jsonify({"message": "Template saved with success"}), 201
 
 @template_bp.route('/api/template/list', methods=['POST'])
+@jwt_required()
 def list_templates():
   data = request.get_json()
 
