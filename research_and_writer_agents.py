@@ -1,6 +1,11 @@
 from crewai import Agent
 from textwrap import dedent
 from langchain_openai import ChatOpenAI
+from crewai_tools import (
+    SerperDevTool,
+)
+
+search_tool = SerperDevTool()
 
 """
 Criando Guia Rápido para Agentes:
@@ -41,6 +46,7 @@ class ResearchAndWriterAgents:
             Sua experiência reside na identificação de tendências emergentes.
             Você tem talento para dissecar dados complexos e apresentar insights acionáveis.""",
             verbose=True,
+            tools=[search_tool],
             allow_delegation=False,
             llm=self.OpenAIGPT35,
         )
@@ -52,6 +58,7 @@ class ResearchAndWriterAgents:
             backstory="""Você é um renomado estrategista de conteúdo, conhecido por seus artigos perspicazes e envolventes.
             Você transforma conceitos complexos em narrativas convincentes.""",
             verbose=True,
+            tools=[search_tool],
             allow_delegation=True,
             lm=self.OpenAIGPT35,
         )
