@@ -54,7 +54,7 @@ class ResearchAndWriterTasks:
                 **Tarefa**: Faça uma análise abrangente de {self.theme_to_search}.
                 **Descrição**: Identifique as principais tendências, tecnologias inovadoras e possíveis impactos no setor.
 
-                **Nota**: {self.__tip_section}
+                **Nota**: {self.__tip_section()}
             '''),
             agent=agent,
             expected_output="Relatório de análise completo em bullet points",
@@ -65,7 +65,7 @@ class ResearchAndWriterTasks:
                 **Tarefa**: Usando os insights fornecidos e as seguintes amostras: {self.user_writing_format}, extraia pontos que identificam o estilo de escrita do usuario, sem levar em consideração palavras usadas nas amostras. Após isso, desenvolva uma postagem de blog envolvente que destaque o {self.theme_to_search}.
                 **Descrição**: Sua postagem deve ser informativa, mas acessível, atendendo a um público que pode ou não entender de tecnologia. Faça com que pareça legal, evite palavras complexas para que não pareça que o post foi escrito por uma IA.
 
-                **Nota**: {self.__tip_section}
+                **Nota**: {self.__tip_section()}
             '''),
             agent=agent,
             expected_output="Postagem completa de blog com pelo menos 4 parágrafos",
