@@ -1,6 +1,6 @@
 from crewai import Agent
 from textwrap import dedent
-from langchain_openai import ChatOpenAI
+from langchain.llms import Ollama
 from crewai_tools import (
     SerperDevTool,
 )
@@ -35,31 +35,35 @@ Notas:
 
 class ResearchAndWriterAgents:
     def __init__(self):
-        self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
-        self.OpenAIGPT4 = ChatOpenAI(model_name="gpt-4", temperature=0.7)
+        # self.OpenAIGPT35 = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
+        # self.OpenAIGPT4 = ChatOpenAI(model_name="gpt-4", temperature=0.7)
+
+        self.llm = Ollama(
+            model="mixtral:8x7b",
+        )
     
     def research(self):
         return Agent(
             role='Analista de Pesquisa Sênior',
             goal='Utilizar expertise avançada em pesquisa e análise para fornecer insights de alta qualidade e soluções eficazes, atendendo às necessidades dos clientes e contribuindo para o crescimento e sucesso da empresa.',
-            backstory="""Você trabalha em um think tank líder em tecnologia.
+            backstory=dedent("""Você trabalha em um think tank líder em tecnologia.
             Sua experiência reside na identificação de tendências emergentes.
-            Você tem talento para dissecar dados complexos e apresentar insights acionáveis.""",
+            Você tem talento para dissecar dados complexos e apresentar insights acionáveis."""),
             verbose=True,
             tools=[search_tool],
             allow_delegation=False,
-            llm=self.OpenAIGPT35,
+            llm=self.llm,
         )
     
     def writer(self):
         return Agent(
             role='Especialista em Criação de Conteúdo',
             goal='Gerar conteúdo altamente cativante e estratégico para as redes sociais, visando aumentar o engajamento, promover a marca e impulsionar o crescimento do público-alvo da empresa/cliente.',
-            backstory="""Você é um renomado estrategista de conteúdo, conhecido por seus artigos perspicazes e envolventes.
-            Você transforma conceitos complexos em narrativas convincentes.""",
+            backstory=dedent("""Você é um renomado estrategista de conteúdo, conhecido por seus artigos perspicazes e envolventes.
+            Você transforma conceitos complexos em narrativas convincentes."""),
             verbose=True,
             tools=[search_tool],
             allow_delegation=True,
-            lm=self.OpenAIGPT35,
+            lm=self.llm,
         )
     
